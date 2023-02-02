@@ -1,19 +1,15 @@
-﻿using Photon.Pun;
+﻿using Assets.Scripts.View;
+using Photon.Pun;
 using Photon.Realtime;
 using System.Threading.Tasks;
 using UnityEngine;
-using View;
 
 namespace Core.Network
 {
     public class Launcher : MonoBehaviourPunCallbacks
     {
         #region Private Serializable fields
-        [SerializeField] private LoginPanel _loginPanel;
-        [SerializeField] private SelectionPanel _selectionPanel;
-        [SerializeField] private RoomListPanel _roomListPanel;
-        [SerializeField] private CreateRoomPanel _createRoomPanel;
-        [SerializeField] private LoadingPanel _loadingPanel;
+        [SerializeField] private PanelTransition _panelTransition;
         [Space]
         [SerializeField] private LogFeedback _feedback;
         [SerializeField] private byte _maxPlayersRoom = 4;
@@ -44,7 +40,7 @@ namespace Core.Network
         public void OnLoginButtonClicked()
         {
             _isConnecting = true;
-            _loginPanel.Activate();
+            //_loginPanel.Hide();
 
             _feedback.AddLogFeedback("Connecting...");
             PhotonNetwork.ConnectUsingSettings();
@@ -53,8 +49,9 @@ namespace Core.Network
 
         public void OnCreateRoomButtonClicked()
         {
-            _selectionPanel.Activate();
-            _createRoomPanel.Activate();
+            //_selectionPanel.Hide();
+            //_createRoomPanel.Show();
+            _panelTransition.SwitchPanel(PanelType.CreatingRoom);
         }
 
         public void OnRoomListButtonClicked()
@@ -64,15 +61,13 @@ namespace Core.Network
                 PhotonNetwork.JoinLobby();
             }
 
-            _selectionPanel.Activate();
-            _roomListPanel.Activate();
+            _panelTransition.SwitchPanel(PanelType.RoomList);
         }
 
         public void OnCancelButtonClicked()
         {
             // fix menu transition
-            _roomListPanel.Activate();
-            _selectionPanel.Activate();
+            _panelTransition.SwitchPreviousPanel(PanelType.Back);
         }
 
         public async void OnQuickStartButtonClicked()
@@ -98,7 +93,7 @@ namespace Core.Network
                 _feedback.AddLogFeedback("On connected to Master: next -> try to join room");
                 Debug.Log("Connected to Master");
 
-                _selectionPanel.Activate();
+                _panelTransition.SwitchPanel(PanelType.Selection);
             }
         }
 
@@ -115,7 +110,7 @@ namespace Core.Network
             Debug.Log("Disconnected");
 
             _isConnecting = false;
-            _loginPanel.Activate();
+            _panelTransition.SwitchPanel(PanelType.Login);
         }
 
         public override void OnJoinedRoom()

@@ -1,12 +1,6 @@
-﻿using UnityEngine;
-
-namespace View
+﻿namespace View
 {
-    public class MainPanel : MonoBehaviour
+    public class MainPanel : BasePanel
     {
-        public void Activate(bool isActive)
-        {
-            gameObject.SetActive(isActive);
-        }
     }
 }

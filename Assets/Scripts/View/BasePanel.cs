@@ -4,13 +4,14 @@ namespace View
 {
     public abstract class BasePanel : MonoBehaviour
     {
-        public void Activate()
+        public void Hide()
         {
-            if (gameObject != null)
-            {
-                bool isActive = gameObject.activeSelf;
-                gameObject.SetActive(!isActive);
-            }
+            gameObject.SetActive(false);
+        }
+
+        public void Show()
+        {
+            gameObject.SetActive(true);
         }
     }
 }

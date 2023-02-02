@@ -2,8 +2,7 @@
 
 namespace Assets.Scripts.View
 {
-    public class MenuSwitchingTest : MonoBehaviour
+    public abstract class UIElement : MonoBehaviour
     {
-
     }
 }
