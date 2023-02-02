@@ -1749,7 +1749,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 658517578}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 778333502}
+        m_TargetAssemblyTypeName: Core.Network.Launcher, Assembly-CSharp
+        m_MethodName: OnCancelButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &658517578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4534,7 +4546,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainPanel: {fileID: 1008887160}
-  _loginPanel: {fileID: 0}
+  _loginPanel: {fileID: 989868370}
   _roomList: {fileID: 1989914660}
   _selectionPanel: {fileID: 1959162440}
   _createRoomPanel: {fileID: 458666645}
